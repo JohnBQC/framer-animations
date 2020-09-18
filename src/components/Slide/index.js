@@ -34,9 +34,9 @@ const slideVariants = {
     ...handleDirection(direction, distance),
   }),
   animate: { opacity: 1, x: 0, y: 0 },
-  exit: ({ distance, direction, retract }) => ({
+  exit: ({ distance, direction }) => ({
     opacity: 0,
-    ...handleDirection(direction, distance, retract ? 1 : -1),
+    ...handleDirection(direction, distance, -1),
   }),
 };
 
@@ -53,7 +53,7 @@ export const Slide = ({
         <motion.div
           animate="animate"
           custom={{ distance, direction, retract }}
-          exit="exit"
+          exit={retract ? "enter" : "exit"}
           initial="enter"
           variants={slideVariants}
         >
